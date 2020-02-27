@@ -43,7 +43,7 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 
 """
 
-
+""" Old Solution
 class Solution:
     def romanToInt(self, s: str) -> int:
         l = len(s)
@@ -98,5 +98,24 @@ class Solution:
                 final_numb += 0
             i+=1
         return final_numb
+
+"""            
+
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        final_dict = {'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
+        final_val = 0
+        l = len(s)
+        i =0
+        while i < l:
+            if i+1 < l:
+                if final_dict[s[i]] < final_dict[s[i+1]]:
+                    final_val += final_dict[s[i+1]] - final_dict[s[i]]
+                    i+=1
+                else:
+                    final_val += final_dict[s[i]]
+            else:
+                final_val += final_dict[s[i]]
+            i+=1
             
-                    
+        return final_val
