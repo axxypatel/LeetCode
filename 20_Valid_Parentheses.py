@@ -30,6 +30,8 @@ Output: true
 
 """
 
+### Brute-Force Method
+"""
 class Solution:
     def isValid(self, s: str) -> bool:
         l = len(s)
@@ -71,5 +73,20 @@ class Solution:
             return True
         else:
             return False
-            
+
+###
+
+## Using HashTable
+class Solution:
+    def isValid(self, s: str) -> bool:      
+        stack = []
+        mapping = {')':'(',']':'[','}':'{'}
+        for i in range(len(s)):
+            if s[i] in mapping:
+                top_ele = stack.pop() if stack else '#'
+                if top_ele != mapping[s[i]]:
+                    return False
+            else:
+                stack.append(s[i])
+        return not stack
         
