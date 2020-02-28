@@ -51,7 +51,40 @@ class Solution:
                     return prefix[:i]
         return prefix         
 """
+### Divide and Conquer Method
 
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        
+        def commonPrefix(leftStr,rightStr):
+            m = min(len(leftStr),len(rightStr))
+            for i in range(m):
+                if leftStr[i] != rightStr[i]:
+                    return leftStr[:i]
+            return leftStr[:m]
+            
+        def divideAndConq(strs,left,right):
+            if(left == right):
+                return strs[left]
+            else:
+                mid = math.floor((left + right) / 2)
+                lcpLeft = divideAndConq(strs,left,mid)
+                lcpRight = divideAndConq(strs,mid+1,right)
+                return commonPrefix(lcpLeft,lcpRight)
+            
+        if len(strs) < 1: return ""
+        elif len(strs) == 1: return strs[0]
+        
+        left,right = 0,len(strs) -1 
+        
+        return divideAndConq(strs,left,right)
+
+            
+                
+                
+            
+        
+        
                 
                 
             
